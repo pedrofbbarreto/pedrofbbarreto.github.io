@@ -3,69 +3,203 @@
 <head>
 <title>Sort a HTML Table Alphabetically</title>
 <style>
-table {
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
+    table {
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    }
 
-th {
-  cursor: pointer;
-}
+    th {
+    cursor: pointer;
+    }
 
-th, td {
-  text-align: left;
-  padding: 16px;
-}
+    th, td {
+    text-align: left;
+    padding: 16px;
+    }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2
-}
+    tr:nth-child(even) {
+    background-color: #f2f2f2
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+    
+    html {
+      box-sizing: border-box;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+    
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+    
+    .about-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+    
+    .container {
+      padding: 0 16px;
+    }
+    
+    .container::after, .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    
+    .title {
+      color: grey;
+    }
+    
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .button:hover {
+      background-color: #555;
+    }
+
+    .container {
+        padding: 50px;
+    }
+    
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
+    }
 </style>
 </head>
 <body>
 
-<p><strong>Trabalhos Defendidos</strong></p>
-<p>126 trabalhos (32 mestrados, 94 doutorados).</p>
-<a href="./detalhes.html">link text</a>
+<div class="about-section">
+    <h1>Emília Viotti</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+</div>
 
-<table id="myTable">
-  <tr>
-   <!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
-    <th onclick="sortTable(0)">Tipo</th>
-    <th onclick="sortTable(1)">Ano</th>
-    <th onclick="sortTable(2)">Titulo</th>
-    <th onclick="sortTable(3)">Editor</th>
-    <th onclick="sortTable(3)">Idioma</th>
-    <th onclick="sortTable(3)">Open access</th>
-  </tr>
-  <tr>
-    <td>Artigo</td>
-    <td>1953</td>
-    <td><a href="./alguns_aspectos.html">Alguns aspectos da influência francesa em São Paulo na metade do século XIX</a></td>
-    <td>Revista de História</td>
-    <td>Português</td>
-    <td>Sim</td>
-  </tr>
-  <tr>
-    <td>North/South</td>
-    <td>1990</td>
-    <td>Brazil</td>
-    <td>Pedro</td>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>1970</td>
-    <td>Germany</td>
-    <td>Raquel</td>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>1970</td>
-    <td>Germany</td>
-    <td>Raquel</td>
-  </tr>
-</table>
+<div class="container">
+    <center><p><strong>Trabalhos Defendidos</strong></p>
+    <p>126 trabalhos (32 mestrados, 94 doutorados).</p></center>
+
+    <table id="myTable">
+        <tr>
+            <th onclick="sortTable(0)">Tipo</th>
+            <th onclick="sortTable(1)">Ano</th>
+            <th onclick="sortTable(2)">Título</th>
+            <th onclick="sortTable(3)">Editor</th>
+            <th onclick="sortTable(4)">Idioma</th>
+            <th onclick="sortTable(5)">Open access</th>
+        </tr>
+        <tr>
+            <td>Artigo</td>
+            <td>1953</td>
+            <td><a href="./alguns_aspectos.html">Alguns aspectos da influência francesa em São Paulo na metade do século XIX</a></td>
+            <td>Revista de História</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-check"></i></td>
+        </tr>
+        <tr>
+            <td>Artigo</td>
+            <td>1954</td>
+            <td><a href="./movimento_republicano_itu.html">O movimento republicano em Itú. Os fazendeiros do Oeste paulista e os pródromos do movimento republicano (Notas prévias)</a></td>
+            <td>Revista de História</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-check"></i></td>
+        </tr>
+        <tr>
+            <td>Artigo</td>
+            <td>1956</td>
+            <td><a href="./primeiros_povoadores_brasil.html">Primeiros povoadores do Brasil. O problema dos degregados</a></td>
+            <td>Revista de História</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-check"></i></td>
+        </tr>
+        <tr>
+            <td>Capítulo</td>
+            <td>1961</td>
+            <td><a href="./tendencias_historiografia.html">Algumas tendências da historiografia contemporânea</a></td>
+            <td>Difel</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+        <tr>
+            <td>Artigo</td>
+            <td>1963</td>
+            <td><a href="./conceicao_amor_romantismo.html">A concepção do amor e idealização da mulher no romantismo</a></td>
+            <td>ALFA: Revista de Linguística</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-check"></i></td>
+        </tr>
+        <tr>
+            <td>Tese</td>
+            <td>1964</td>
+            <td><a href="./escravidao_areas_cafeeiras.html">Escravidão nas Áreas Cafeeiras. Aspectos econômicos, sociais e ideológicos da desagregação do sistema escravista</a></td>
+            <td></td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+        <tr>
+            <td>Livro</td>
+            <td>1966</td>
+            <td><a href="./da_senzala_a_colonia.html">Da senzala à colônia</a></td>
+            <td>Difel</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+        <tr>
+            <td>Capítulo</td>
+            <td>1968</td>
+            <td><a href="./introducao_emancipacao_brasil.html">Introdução ao estudo da emancipação política do Brasil</a></td>
+            <td>Difel</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+        <tr>
+            <td>Livro</td>
+            <td>1977</td>
+            <td><a href="./da_monarquia_a_republica.html">Da monarquia à república: momentos decisivos</a></td>
+            <td>Grijalbo</td>
+            <td>Português</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+        <tr>
+            <td>Artigo</td>
+            <td>1977</td>
+            <td><a href="./slaves_images_realities.html">Slaves images and realities</a></td>
+            <td>Annals of the New York Academy of Sciences</td>
+            <td>Inglês</td>
+            <td><i class="fa-solid fa-xmark"></i></td>
+        </tr>
+    </table>
+</div>
+</body>
 
 <script>
 function sortTable(n) {
@@ -123,6 +257,5 @@ function sortTable(n) {
   }
 }
 </script>
-
-</body>
+<script src="https://kit.fontawesome.com/a6029d4b66.js" crossorigin="anonymous"></script>
 </html>
