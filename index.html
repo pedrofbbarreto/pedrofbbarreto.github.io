@@ -1,276 +1,220 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<title>Sort a HTML Table Alphabetically</title>
-<style>
-    table {
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-    }
-
-    th {
-    cursor: pointer;
-    }
-
-    th, td {
-    text-align: left;
-    padding: 16px;
-    }
-
-    tr:nth-child(even) {
-    background-color: #f2f2f2
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-    }
-    
-    html {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Fernandes Braz Barreto</title>
+  <style>
+    /* ===== Reset leve ===== */
+    * {
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
     }
-    
-    *, *:before, *:after {
-      box-sizing: inherit;
+    body {
+      margin: 0;
+      padding: 2rem 1rem 4rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      color: #1a1a1a;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
     }
-    
-    .column {
-      float: left;
-      width: 33.3%;
-      margin-bottom: 16px;
-      padding: 0 8px;
-    }
-    
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      margin: 8px;
-    }
-    
-    .about-section {
-      padding: 50px;
-      text-align: center;
-      background-color: #474e5d;
-      color: white;
-    }
-    
-    .container {
-      padding: 0 16px;
-    }
-    
-    .container::after, .row::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-    
-    .title {
-      color: grey;
-    }
-    
-    .button {
-      border: none;
-      outline: 0;
-      display: inline-block;
-      padding: 8px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
+
+    /* ===== Layout principal ===== */
+    .page-wrapper {
       width: 100%;
-    }
-    
-    .button:hover {
-      background-color: #555;
+      max-width: 900px;
     }
 
-    .container {
-        padding: 50px;
+    header h1 {
+      font-size: clamp(1.8rem, 1vw + 1.5rem, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #1f1f1f;
+      margin: 0 0 2rem;
     }
 
-    a {
-        color: #1a73e8; /* Change link color */
-        text-decoration: none; /* Remove the underline */
-        font-weight: bold; /* Make the text bold */
+    .content {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
     }
 
-    a:hover {
-        color: #0b54c9; /* Darker color on hover */
-        text-decoration: underline; /* Underline on hover */
-    }
-
-    a:active {
-        color: #0047ab; /* Even darker color when active (clicked) */
-    }
-    
-    @media screen and (max-width: 650px) {
-      .column {
-        width: 100%;
-        display: block;
+    /* Responsivo: em telas menores, empilha */
+    @media (max-width: 700px) {
+      .content {
+        grid-template-columns: 1fr;
       }
     }
-</style>
+
+    /* ===== Foto ===== */
+    .profile-photo {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid #d9d9d9;
+      background-color: #f2f2f2;
+    }
+
+    /* ===== Card lateral ===== */
+    .info-card {
+      background-color: #f8f8f8;
+      border: 1px solid #e1e1e1;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bio {
+      font-size: 0.95rem;
+      color: #2a2a2a;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .bio-emoji {
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== Blocos de link ===== */
+    .link-block {
+      background-color: #ffffff;
+      border: 1px solid #e1e1e1;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #1f1f1f;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: background-color 0.15s, box-shadow 0.15s;
+    }
+
+    .link-block:hover {
+      background-color: #fdfdfd;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .link-emoji {
+      font-size: 1.1rem;
+      line-height: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== E-mail ===== */
+    .email-block {
+      background-color: #ffffff;
+      border: 1px solid #e1e1e1;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      line-height: 1.4;
+      color: #1f1f1f;
+      word-break: break-word;
+    }
+
+    .email-address {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .email-address:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Acessibilidade leve ===== */
+    a:focus-visible,
+    .email-address:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
+  <main class="page-wrapper">
+    <header>
+      <h1>Pedro Fernandes Braz Barreto</h1>
+    </header>
 
-<div class="about-section">
-    <h1>Emília Viotti</h1>
-    <p>Some text about who we are and what we do.</p>
-    <p>Resize the browser window to see that this page is responsive by the way.</p>
-</div>
+    <section class="content">
+      <!-- Coluna esquerda: foto -->
+      <div class="photo-col">
+        <img
+          src="foto.jpg"
+          alt="Retrato de Pedro Fernandes Braz Barreto"
+          class="profile-photo"
+        />
+      </div>
 
-<div class="container">
-    <center><p><strong>Trabalhos Defendidos</strong></p>
-    <p>126 trabalhos (32 mestrados, 94 doutorados).</p></center>
+      <!-- Coluna direita: card -->
+      <div class="info-card">
+        <!-- Bio -->
+        <div class="bio">
+          <div class="bio-emoji">💡</div>
+          <div class="bio-text">
+            Graduado em História pela Universidade Federal de Viçosa (UFV) e atualmente é estudante do curso de mestrado em História na Universidade Federal de Ouro Preto (UFOP). Áreas de interesse: história social do trabalho, escravidão, movimento operário, teoria da história e história da historiografia.
+          </div>
+        </div>
 
-    <table id="myTable">
-        <tr>
-            <th onclick="sortTable(0)">Tipo</th>
-            <th onclick="sortTable(1)">Ano</th>
-            <th onclick="sortTable(2)">Título</th>
-            <th onclick="sortTable(3)">Editor</th>
-            <th onclick="sortTable(4)">Idioma</th>
-            <th onclick="sortTable(5)">Open access</th>
-        </tr>
-        <tr>
-            <td>Artigo</td>
-            <td>1953</td>
-            <td><a href="./alguns_aspectos.html">Alguns aspectos da influência francesa em São Paulo na metade do século XIX</a></td>
-            <td>Revista de História</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-check"></i></td>
-        </tr>
-        <tr>
-            <td>Artigo</td>
-            <td>1954</td>
-            <td><a href="./movimento_republicano_itu.html">O movimento republicano em Itú. Os fazendeiros do Oeste paulista e os pródromos do movimento republicano (Notas prévias)</a></td>
-            <td>Revista de História</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-check"></i></td>
-        </tr>
-        <tr>
-            <td>Artigo</td>
-            <td>1956</td>
-            <td><a href="./primeiros_povoadores_brasil.html">Primeiros povoadores do Brasil. O problema dos degregados</a></td>
-            <td>Revista de História</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-check"></i></td>
-        </tr>
-        <tr>
-            <td>Capítulo</td>
-            <td>1961</td>
-            <td><a href="./tendencias_historiografia.html">Algumas tendências da historiografia contemporânea</a></td>
-            <td>Difel</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-        <tr>
-            <td>Artigo</td>
-            <td>1963</td>
-            <td><a href="./conceicao_amor_romantismo.html">A concepção do amor e idealização da mulher no romantismo</a></td>
-            <td>ALFA: Revista de Linguística</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-check"></i></td>
-        </tr>
-        <tr>
-            <td>Tese</td>
-            <td>1964</td>
-            <td><a href="./escravidao_areas_cafeeiras.html">Escravidão nas Áreas Cafeeiras. Aspectos econômicos, sociais e ideológicos da desagregação do sistema escravista</a></td>
-            <td></td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-        <tr>
-            <td>Livro</td>
-            <td>1966</td>
-            <td><a href="./da_senzala_a_colonia.html">Da senzala à colônia</a></td>
-            <td>Difel</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-        <tr>
-            <td>Capítulo</td>
-            <td>1968</td>
-            <td><a href="./introducao_emancipacao_brasil.html">Introdução ao estudo da emancipação política do Brasil</a></td>
-            <td>Difel</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-        <tr>
-            <td>Livro</td>
-            <td>1977</td>
-            <td><a href="./da_monarquia_a_republica.html">Da monarquia à república: momentos decisivos</a></td>
-            <td>Grijalbo</td>
-            <td>Português</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-        <tr>
-            <td>Artigo</td>
-            <td>1977</td>
-            <td><a href="./slaves_images_realities.html">Slaves images and realities</a></td>
-            <td>Annals of the New York Academy of Sciences</td>
-            <td>Inglês</td>
-            <td><i class="fa-solid fa-xmark"></i></td>
-        </tr>
-    </table>
-</div>
+        <!-- Projetos -->
+        <a
+          class="link-block"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="link-emoji">📎</span>
+          <span>Projetos</span>
+        </a>
+
+        <!-- Lattes -->
+        <a
+          class="link-block"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="link-emoji">🎓</span>
+          <span>Currículo Lattes</span>
+        </a>
+
+        <!-- Publicações -->
+        <a
+          class="link-block"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="link-emoji">✏️</span>
+          <span>Publicações</span>
+        </a>
+
+        <!-- E-mail -->
+        <div class="email-block">
+          <span class="link-emoji">✉️</span>
+          <a class="email-address" href="mailto:barreto.pedro@proton.me">
+            barreto.pedro@proton.me
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
-
-<script>
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  //Set the sorting direction to ascending:
-  dir = "asc"; 
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
-</script>
-<script src="https://kit.fontawesome.com/a6029d4b66.js" crossorigin="anonymous"></script>
 </html>
